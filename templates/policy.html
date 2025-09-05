@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Договір оферти та Політика конфіденційності — robochi.work{% endblock %}
+{% block content %}
+<main class="page page-narrow">
+
+  <h1>Договір оферти та Політика конфіденційності</h1>
+
+  <h2>Договір оферти</h2>
+  <div class="legal-text">{{ offer_text|linebreaks }}</div>
+
+  <h2 id="privacy">Політика конфіденційності</h2>
+  <div class="legal-text">{{ privacy_text|linebreaks }}</div>
+
+  <hr>
+  <hr>
+  
+<a class="btn close-btn" href="/">Закрити</a>
+
+</main>
+{% block extra_js %}
+<script>
+  const nav = performance.getEntriesByType('navigation')[0];
+  const isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+  if (isReload) {
+    window.location.replace('/');
+  }
+</script>
+{% endblock %}
+{% endblock %}

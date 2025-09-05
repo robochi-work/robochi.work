@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}robochi.work{% endblock %}</title>
+  <meta name="description" content="Сервіс пошуку некваліфікованих працівників в Україні: різноробочі, підсобники, вантажники. Швидкий пошук будь яка кількість людей.">
+  <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script defer src="{% static 'js/main.js' %}?v=8"></script>
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>

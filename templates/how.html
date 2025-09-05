@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}ПОШУК ПРАЦІВНИКІВ{% endblock %}
+{% block content %}
+<main class="page--how">
+  <div class="how-wrap">
+  <h1>Як це працює?</h1>
+  <p>
+    Вітаємо!<br>
+    Вам потрібні працівники?<br>
+    Або шукаєш підробіток коли зручно?<br>
+    Потрібно носити, копати, прибирати, фарбувати, мити, демонтувати?<br>
+    Потрібен помічник або треба відразу багато людей?<br><br>
+
+    <strong>СЕРВІС ПОШУКУ ПРАЦІВНИКІВ</strong><br><br>
+
+    Різноробочі, підсобники, вантажники, прибиральниці та інші некваліфіковані робітники!<br>
+    Ми допоможемо Вам знайти та проконтролювати явку на роботу будь якої кількості людей на умовах щоденного розрахунку!<br><br>
+
+    <strong>Увага!</strong><br>
+    Для роботи з нашим сервісом Вам потрібен Telegram.<br>
+    Скориставшись нашим сервісом ви доєднаєтеся до групи Telegram, де зможете знайти та організувати будь яку кількість людей!<br><br>
+
+    Дякуємо, що користуєтеся нашим сервісом!
+  </p>
+
+    <button class="btn close-btn" onclick="window.location.href='/'">Закрити</button>
+</div>
+</main>
+
+{% block extra_js %}
+<script>
+  const nav = performance.getEntriesByType('navigation')[0];
+  const isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+  if (isReload) {
+    window.location.replace('/');
+  }
+</script>
+{% endblock %}
+{% endblock %}
+

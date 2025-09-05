@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}ПОШУК ПРАЦІВНИКІВ{% endblock %}
+{% block content %}
+<main class="page">
+  
+  <a id="how-btn" class="how-btn" href="{% url 'how' %}?from=home">Як це працює?</a>
+
+  <div class="big-buttons">
+  <a class="big-btn" href="{% url 'need_telegram' 'employer' %}?from=home">
+    <span class="line1">Я РОБОТОДАВЕЦЬ</span>
+    <span class="line2">шукаю працівників</span>
+  </a>
+
+  <a class="big-btn" href="{% url 'need_telegram' 'worker' %}?from=home">
+    <span class="line1">Я ПРАЦІВНИК</span>
+    <span class="line2">шукаю роботу</span>
+  </a>
+</div>
+
+  <div class="bottom-link">
+    <a id="policy-link" href="{% url 'policy' %}?from=home">Договір оферти та Політика конфіденційності</a>
+  </div>
+
+</main>
+{% endblock %}

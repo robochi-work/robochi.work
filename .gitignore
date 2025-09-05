@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.log
+
+.env
+.env.*
+venv/
+.venv/
+
+db.sqlite3
+media/
+staticfiles/
+
+.vscode/
+.idea/
+.history/
+
+.DS_Store
+Thumbs.db
+
+**/migrations/__pycache__/
