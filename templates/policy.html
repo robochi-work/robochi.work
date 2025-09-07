@@ -1,22 +1,29 @@
 {% extends "base.html" %}
-{% block title %}Договір оферти та Політика конфіденційності — robochi.work{% endblock %}
+
+{% block title %}ПОШУК ПРАЦІВНИКІВ{% endblock %}
+{% block description %}Ознайомтеся з договором оферти та політикою конфіденційності сервісу robochi.work. Важлива юридична інформація для користувачів.{% endblock %}
+{% block canonical %}https://robochi.work/policy/{% endblock %}
+{% block og_title %}Політика конфіденційності та оферта{% endblock %}
+{% block og_description %}Правила використання сервісу robochi.work, умови договору оферти та захист персональних даних.{% endblock %}
+
 {% block content %}
 <main class="page page-narrow">
 
-  <h1>Договір оферти та Політика конфіденційності</h1>
+  <div class="legal-text">
+    <h1>Договір оферти та Політика конфіденційності</h1>
 
-  <h2>Договір оферти</h2>
-  <div class="legal-text">{{ offer_text|linebreaks }}</div>
+    <h2>ПУБЛІЧНИЙ ДОГОВІР (ОФЕРТА)<br>на надання інформаційних послуг </h2>
+    {{ offer_text|linebreaks }}
 
-  <h2 id="privacy">Політика конфіденційності</h2>
-  <div class="legal-text">{{ privacy_text|linebreaks }}</div>
+    <h2 id="privacy">ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ</h2>
+    {{ privacy_text|linebreaks }}
+  </div>
 
-  <hr>
-  <hr>
-  
-<a class="btn close-btn" href="/">Закрити</a>
+  <hr><hr>
+  <a class="btn close-btn" href="/">Закрити</a>
 
 </main>
+
 {% block extra_js %}
 <script>
   const nav = performance.getEntriesByType('navigation')[0];

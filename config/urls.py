@@ -1,5 +1,6 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.static import serve as static_serve
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView
 from django.conf import settings
@@ -13,6 +14,7 @@ sitemaps = {
 }
 
 urlpatterns = [
+
     path("admin/", admin.site.urls),
 
     path("", include("main.urls")),
@@ -24,6 +26,12 @@ urlpatterns = [
         url="/static/img/favicon.ico", permanent=True)),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:re_path(
+        r"^\.well-known/appspecific/(?P<path>.+)$",
+        static_serve,
+        {"document_root": settings.BASE_DIR / "well_known" / "appspecific"},
+        name="well_known_appspecific",
+    ),
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

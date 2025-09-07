@@ -1,21 +1,27 @@
 {% extends "base.html" %}
+
 {% block title %}ПОШУК ПРАЦІВНИКІВ{% endblock %}
+{% block description %}Знайдіть різноробочих, підсобників, вантажників в Україні. Швидкий пошук працівників або роботи через Telegram бот.{% endblock %}
+{% block canonical %}https://robochi.work/{% endblock %}
+{% block og_title %}robochi.work — сервіс пошуку працівників{% endblock %}
+{% block og_description %}Платформа, що допомагає роботодавцям швидко знайти працівників, а людям — роботу.{% endblock %}
+
 {% block content %}
 <main class="page">
   
   <a id="how-btn" class="how-btn" href="{% url 'how' %}?from=home">Як це працює?</a>
 
   <div class="big-buttons">
-  <a class="big-btn" href="{% url 'need_telegram' 'employer' %}?from=home">
-    <span class="line1">Я РОБОТОДАВЕЦЬ</span>
-    <span class="line2">шукаю працівників</span>
-  </a>
+    <a class="big-btn" href="{% url 'need_telegram' 'employer' %}?from=home">
+      <span class="line1">Я РОБОТОДАВЕЦЬ</span>
+      <span class="line2">шукаю працівників</span>
+    </a>
 
-  <a class="big-btn" href="{% url 'need_telegram' 'worker' %}?from=home">
-    <span class="line1">Я ПРАЦІВНИК</span>
-    <span class="line2">шукаю роботу</span>
-  </a>
-</div>
+    <a class="big-btn" href="{% url 'need_telegram' 'worker' %}?from=home">
+      <span class="line1">Я ПРАЦІВНИК</span>
+      <span class="line2">шукаю роботу</span>
+    </a>
+  </div>
 
   <div class="bottom-link">
     <a id="policy-link" href="{% url 'policy' %}?from=home">Договір оферти та Політика конфіденційності</a>

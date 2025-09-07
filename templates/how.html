@@ -1,40 +1,58 @@
 {% extends "base.html" %}
+
 {% block title %}ПОШУК ПРАЦІВНИКІВ{% endblock %}
+{% block description %}Дізнайтеся, як працює сервіс robochi.work: швидкий пошук різноробочих та працівників через Telegram.{% endblock %}
+{% block canonical %}https://robochi.work/how/{% endblock %}
+{% block og_title %}СЕРВІС ПОШУКУ ПРАЦІВНИКІВ{% endblock %}
+{% block og_description %}Пояснення роботи платформи robochi.work: як знайти працівників чи роботу за кілька кліків у Telegram.{% endblock %}
+
 {% block content %}
-<main class="page--how">
-  <div class="how-wrap">
-  <h1>Як це працює?</h1>
-  <p>
-    Вітаємо!<br>
-    Вам потрібні працівники?<br>
-    Або шукаєш підробіток коли зручно?<br>
-    Потрібно носити, копати, прибирати, фарбувати, мити, демонтувати?<br>
-    Потрібен помічник або треба відразу багато людей?<br><br>
+<main class="page--how"
+      style="min-height:100dvh;display:flex;justify-content:center;align-items:center;padding:24px 16px;box-sizing:border-box;">
+  <div class="how-wrap"
+       style="width:100%;max-width:640px;margin:0 auto;text-align:center;">
+    <h1>Як це працює?</h1>
+    <p>
+      Вітаємо!<br>
+      Вам потрібні працівники?<br>
+      Або шукаєш підробіток коли зручно?<br>
+      Потрібно носити, копати, прибирати, фарбувати, мити, демонтувати?<br>
+      Потрібен помічник або треба відразу багато людей?<br><br>
 
-    <strong>СЕРВІС ПОШУКУ ПРАЦІВНИКІВ</strong><br><br>
+      <strong>СЕРВІС ПОШУКУ ПРАЦІВНИКІВ</strong><br><br>
 
-    Різноробочі, підсобники, вантажники, прибиральниці та інші некваліфіковані робітники!<br>
-    Ми допоможемо Вам знайти та проконтролювати явку на роботу будь якої кількості людей на умовах щоденного розрахунку!<br><br>
+      Різноробочі, підсобники, вантажники, прибиральниці та інші некваліфіковані робітники!<br>
+      Ми допоможемо Вам знайти та проконтролювати явку на роботу будь якої кількості людей на умовах щоденного розрахунку!<br><br>
 
-    <strong>Увага!</strong><br>
-    Для роботи з нашим сервісом Вам потрібен Telegram.<br>
-    Скориставшись нашим сервісом ви доєднаєтеся до групи Telegram, де зможете знайти та організувати будь яку кількість людей!<br><br>
+      <strong>Увага!</strong><br>
+      Для роботи з нашим сервісом Вам потрібен Telegram.<br>
+      Скориставшись нашим сервісом ви доєднаєтеся до групи Telegram, де зможете знайти та організувати будь яку кількість людей!<br><br>
 
-    Дякуємо, що користуєтеся нашим сервісом!
-  </p>
+      Дякуємо, що користуєтеся нашим сервісом!
+    </p>
 
     <button class="btn close-btn" onclick="window.location.href='/'">Закрити</button>
-</div>
+  </div>
 </main>
 
 {% block extra_js %}
 <script>
-  const nav = performance.getEntriesByType('navigation')[0];
-  const isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
-  if (isReload) {
-    window.location.replace('/');
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    let isReload = false;
+
+    // Новый API
+    if (performance.getEntriesByType("navigation").length > 0) {
+      isReload = performance.getEntriesByType("navigation")[0].type === "reload";
+    } 
+    // Старый API (для совместимости)
+    else if (performance.navigation) {
+      isReload = performance.navigation.type === 1;
+    }
+
+    if (isReload) {
+      window.location.href = "/";
+    }
+  });
 </script>
 {% endblock %}
 {% endblock %}
-

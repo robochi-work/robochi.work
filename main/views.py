@@ -1,5 +1,15 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
+
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow:",
+        "Sitemap: https://robochi.work/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+
 import os
 from django.conf import settings
 
@@ -57,3 +67,7 @@ def need_telegram(request, role):
     return render(request, "need_telegram.html", {
         "telegram_link": telegram_link
     })
+from django.http import JsonResponse
+
+def chrome_devtools(request):
+    return JsonResponse({})

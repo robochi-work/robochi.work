@@ -4,10 +4,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>{% block title %}robochi.work{% endblock %}</title>
-  <meta name="description" content="Сервіс пошуку некваліфікованих працівників в Україні: різноробочі, підсобники, вантажники. Швидкий пошук будь яка кількість людей.">
+
+  <meta name="description" content="{% block description %}Сервіс пошуку некваліфікованих працівників в Україні: різноробочі, підсобники, вантажники. Швидкий пошук будь-якої кількості людей.{% endblock %}">
+  <meta name="keywords" content="{% block keywords %}робота, працівники, вакансії, телеграм бот, riznorobochi{% endblock %}">
+  <meta name="author" content="{% block author %}robochi.work{% endblock %}">
+
+  <link rel="canonical" href="{% block canonical %}https://robochi.work/{% endblock %}">
+
+
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="robochi.work">
+  <meta property="og:title" content="{% block og_title %}robochi.work — пошук роботи та працівників{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Платформа для роботодавців та працівників у Telegram.{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}{% static 'img/preview.png' %}{% endblock %}">
+  <meta property="og:url" content="{% block og_url %}https://robochi.work/{% endblock %}">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}Riznorobochi — пошук роботи та працівників{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Швидкий пошук роботи та працівників у Telegram.{% endblock %}">
+  <meta name="twitter:image" content="{% block twitter_image %}{% static 'img/preview.png' %}{% endblock %}">
+
   <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=13">
   <script defer src="{% static 'js/main.js' %}?v=8"></script>
 </head>
 <body>
