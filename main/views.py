@@ -1,14 +1,7 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse
+from django.shortcuts import render
 
-def robots_txt(request):
-    lines = [
-        "User-Agent: *",
-        "Disallow:",
-        "Sitemap: https://robochi.work/sitemap.xml",
-    ]
-    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 import os
 from django.conf import settings
@@ -34,11 +27,15 @@ def policy(request):
     offer_path = os.path.join(settings.BASE_DIR, "legal", "offer.txt")
     privacy_path = os.path.join(settings.BASE_DIR, "legal", "privacy.txt")
 
-    with open(offer_path, "r", encoding="utf-8") as f:
-        offer_text = f.read()
+    def read_text_safe(path):
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                return f.read()
 
-    with open(privacy_path, "r", encoding="utf-8") as f:
-        privacy_text = f.read()
+        return "Упс яка прикра несподіванка. Напевно щось трапилося. Будь ласка, спробуйте пізніше."
+
+    offer_text = read_text_safe(offer_path)
+    privacy_text = read_text_safe(privacy_path)
 
     return render(request, "policy.html", {
         "offer_text": offer_text,
@@ -46,12 +43,18 @@ def policy(request):
     })
 
 def robots_txt(request):
+
+    if settings.DEBUG:
+        sitemap_url = "http://127.0.0.1:8000/sitemap.xml"
+    else:
+        sitemap_url = "https://robochi.work/sitemap.xml"
+
     lines = [
         "User-agent: *",
         "Disallow:",
-        "Sitemap: http://robochi.work/sitemap.xml",
+        f"Sitemap: {sitemap_url}",
     ]
-    return HttpResponse("\n".join(lines), content_type="text/plain")
+    return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
 
 def need_telegram(request, role):
     if not _came_from_home(request):
