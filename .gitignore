@@ -1,24 +1,31 @@
-# Python
+
 __pycache__/
-*.py[cod]
+*.pyc
 *.pyo
 *.pyd
 *.so
 *.egg-info/
 *.log
 
-.env
-.env.*
 venv/
 .venv/
 
+.env
+.env.*
+
 db.sqlite3
-media/
-staticfiles/
+
+/staticfiles/
+/media/
 
 .vscode/
 .idea/
 .history/
+
+*.swp
+*.swo
+*~
+nano.save
 
 .DS_Store
 Thumbs.db
