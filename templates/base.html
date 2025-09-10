@@ -13,7 +13,6 @@
 
   <link rel="canonical" href="{% block canonical %}https://robochi.work/{% endblock %}">
 
-
   <meta property="og:locale" content="uk_UA">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="robochi.work">
@@ -21,7 +20,6 @@
   <meta property="og:description" content="{% block og_description %}Платформа для роботодавців та працівників у Telegram.{% endblock %}">
   <meta property="og:image" content="{% block og_image %}{% static 'img/preview.png' %}{% endblock %}">
   <meta property="og:url" content="{% block og_url %}https://robochi.work/{% endblock %}">
-
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{% block twitter_title %}Riznorobochi — пошук роботи та працівників{% endblock %}">
@@ -31,6 +29,16 @@
   <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=13">
   <script defer src="{% static 'js/main.js' %}?v=8"></script>
+
+  <meta name="google-site-verification" content="VNiGNzmmBUM-313iXL7HvqP5ZpiL_vEUU_CBnAttg_k" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DHLH231G17"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DHLH231G17');
+  </script>
 </head>
 <body>
   {% block content %}{% endblock %}
