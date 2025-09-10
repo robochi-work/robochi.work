@@ -1,11 +1,12 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "замени-на-настоящий-в-продакшене")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", get_random_secret_key())
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
 
@@ -97,4 +98,3 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
