@@ -1,10 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}ПОШУК ПРАЦІВНИКІВ{% endblock %}
+{% block title %}Політика конфіденційності та договір оферти — robochi.work{% endblock %}
 {% block description %}Ознайомтеся з договором оферти та політикою конфіденційності сервісу robochi.work. Важлива юридична інформація для користувачів.{% endblock %}
+{% block keywords %}договір оферти, політика конфіденційності, умови використання, персональні дані, robochi.work{% endblock %}
+{% block author %}robochi.work{% endblock %}
 {% block canonical %}https://robochi.work/policy/{% endblock %}
-{% block og_title %}Політика конфіденційності та оферта{% endblock %}
-{% block og_description %}Правила використання сервісу robochi.work, умови договору оферти та захист персональних даних.{% endblock %}
+
+{% block og_title %}Політика конфіденційності та оферта — robochi.work{% endblock %}
+{% block og_description %}Правила використання сервісу robochi.work: умови договору оферти та захист персональних даних.{% endblock %}
+{% block og_url %}https://robochi.work/policy/{% endblock %}
+{% block og_image %}https://robochi.work/static/img/preview_policy.jpg{% endblock %}
+
+{% block twitter_title %}Політика конфіденційності та оферта{% endblock %}
+{% block twitter_description %}Юридичні умови використання robochi.work: договір оферти та політика конфіденційності.{% endblock %}
+{% block twitter_image %}https://robochi.work/static/img/preview_policy.jpg{% endblock %}
 
 {% block content %}
 <main class="page page-narrow">
@@ -20,17 +29,25 @@
   </div>
 
   <hr><hr>
-  <a class="btn close-btn" href="/">Закрити</a>
+  <button class="btn close-btn" onclick="window.location.replace('/')">Закрити</button>
 
 </main>
 
 {% block extra_js %}
 <script>
-  const nav = performance.getEntriesByType('navigation')[0];
-  const isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
-  if (isReload) {
-    window.location.replace('/');
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    let isReload = false;
+
+    if (performance.getEntriesByType("navigation").length > 0) {
+      isReload = performance.getEntriesByType("navigation")[0].type === "reload";
+    } else if (performance.navigation) {
+      isReload = performance.navigation.type === 1;
+    }
+
+    if (isReload) {
+      window.location.replace("/");
+    }
+  });
 </script>
 {% endblock %}
 {% endblock %}

@@ -1,10 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}ПОШУК ПРАЦІВНИКІВ{% endblock %}
-{% block description %}Дізнайтеся, як працює сервіс robochi.work: швидкий пошук різноробочих та працівників через Telegram.{% endblock %}
+{% block title %}Як працює сервіс robochi.work?{% endblock %}
+{% block description %}Дізнайтеся, як працює сервіс robochi.work: швидкий пошук різноробочих, підсобників, вантажників через Telegram.{% endblock %}
+{% block keywords %}як працює robochi, знайти працівників, знайти роботу, різноробочі, підсобники, вантажники, Україна{% endblock %}
+{% block author %}robochi.work{% endblock %}
 {% block canonical %}https://robochi.work/how/{% endblock %}
-{% block og_title %}СЕРВІС ПОШУКУ ПРАЦІВНИКІВ{% endblock %}
-{% block og_description %}Пояснення роботи платформи robochi.work: як знайти працівників чи роботу за кілька кліків у Telegram.{% endblock %}
+
+{% block og_title %}Як це працює? — robochi.work{% endblock %}
+{% block og_description %}Є робочі! Є робота! Дізнайтеся, як швидко знайти працівників чи роботу за кілька кліків у Telegram.{% endblock %}
+{% block og_url %}https://robochi.work/how/{% endblock %}
+{% block og_image %}https://robochi.work/static/img/preview_how.jpg{% endblock %}
+
+{% block twitter_title %}Як працює сервіс robochi.work{% endblock %}
+{% block twitter_description %}Алгоритм роботи сервісу: швидкий пошук різноробочих та роботодавців в Україні через Telegram.{% endblock %}
+{% block twitter_image %}https://robochi.work/static/img/preview_how.jpg{% endblock %}
 
 {% block content %}
 <main class="page--how"
@@ -31,28 +40,55 @@
       Дякуємо, що користуєтеся нашим сервісом!
     </p>
 
-    <button class="btn close-btn" onclick="window.location.href='/'">Закрити</button>
+    <button type="button" class="btn close-btn" id="closeBtn" aria-label="Закрити і повернутися на головну">Закрити</button>
   </div>
 </main>
 
 {% block extra_js %}
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    let isReload = false;
-
-    // Новый API
-    if (performance.getEntriesByType("navigation").length > 0) {
-      isReload = performance.getEntriesByType("navigation")[0].type === "reload";
-    } 
-    // Старый API (для совместимости)
-    else if (performance.navigation) {
-      isReload = performance.navigation.type === 1;
+  (function () {
+    function goHome() {
+      window.location.replace("/");
     }
 
-    if (isReload) {
-      window.location.href = "/";
+    function onReady(fn) {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", fn, { once: true });
+      } else {
+        fn();
+      }
     }
-  });
+
+    onReady(function () {
+      var btn = document.getElementById("closeBtn");
+      if (btn) {
+        btn.addEventListener("click", goHome, { once: true });
+        btn.addEventListener("touchend", function (e) {
+          e.preventDefault();
+          goHome();
+        }, { passive: false, once: true });
+
+        btn.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            goHome();
+          }
+        });
+      }
+
+      try {
+        var nav = (performance.getEntriesByType && performance.getEntriesByType("navigation")) || [];
+        var isReload = false;
+        if (nav.length) {
+          isReload = nav[0].type === "reload";
+        } else if (performance && performance.navigation) {
+          isReload = performance.navigation.type === 1;
+        }
+        if (isReload) goHome();
+      } catch (e) {
+      }
+    });
+  })();
 </script>
 {% endblock %}
 {% endblock %}

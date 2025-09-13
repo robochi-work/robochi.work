@@ -1,31 +1,23 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-<<<<<<< HEAD
 from django.core.management.utils import get_random_secret_key
-=======
->>>>>>> e2ef033a96ae1e513960be9ae6ca4dac61325b8b
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
-<<<<<<< HEAD
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", get_random_secret_key())
-=======
 def env_list(key: str, default: str = "") -> list[str]:
     return [x.strip() for x in os.environ.get(key, default).split(",") if x.strip()]
->>>>>>> e2ef033a96ae1e513960be9ae6ca4dac61325b8b
 
-SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
-
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = env_list(
     "DJANGO_ALLOWED_HOSTS",
-    "127.0.0.1,localhost"
+    "127.0.0.1,localhost,5.187.2.230,robochi.work,www.robochi.work"
 )
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 CSRF_TRUSTED_ORIGINS = [f"https://{h}" for h in ALLOWED_HOSTS if "." in h]
 if DEBUG:
@@ -78,7 +70,7 @@ else:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_SECONDS = 31536000
-    SECURE_HSTS_INCLUDE_SUBDOMАINS = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
@@ -105,15 +97,11 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("DB_NAME", "robochi_db"),
         "USER": os.environ.get("DB_USER", "robochi_user"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", ""),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "StrongPassword123"),
         "HOST": os.environ.get("DB_HOST", "127.0.0.1"),
         "PORT": os.environ.get("DB_PORT", "5433"),
     }
 }
-<<<<<<< HEAD
-=======
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 SITE_ID = int(os.environ.get("SITE_ID", "1"))
->>>>>>> e2ef033a96ae1e513960be9ae6ca4dac61325b8b
