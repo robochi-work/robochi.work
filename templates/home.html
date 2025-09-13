@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Є робочі! Є робота!{% endblock %}
-{% block description %}Знайдіть різноробочих, підсобників, вантажників в Україні. Швидкий пошук працівників або роботи.{% endblock %}
+{% block title %}СЕРВІС ПОШУКУ ПРАЦІВНИКІВ{% endblock %}
+{% block description %}Різноробочі, підсобники, вантажники у Вашому місті. Знайдіть працівників або роботу з щоденним розрахунком за допомогою нашого сервісу!{% endblock %}
 {% block keywords %}робота, працівники, різноробочі, підсобники, вантажники, пошук роботи, Україна, robochi.work{% endblock %}
 {% block author %}robochi.work{% endblock %}
 {% block canonical %}https://robochi.work/{% endblock %}
 
 {% block og_title %}СЕРВІС ПОШУКУ ПРАЦІВНИКІВ{% endblock %}
-{% block og_description %}Платформа, що допомагає роботодавцям швидко знайти працівників, а людям — роботу.{% endblock %}
+{% block og_description %}Різноробочі, підсобники, вантажники у Вашому місті. Знайдіть працівників або роботу з щоденним розрахунком за допомогою нашого сервісу!{% endblock %}
 {% block og_url %}https://robochi.work/{% endblock %}
 
 {% block twitter_title %}СЕРВІС ПОШУКУ ПРАЦІВНИКІВ{% endblock %}
-{% block twitter_description %}Швидкий пошук працівників і роботи на умовах щоденого розрахунку{% endblock %}
+{% block twitter_description %}Різноробочі, підсобники, вантажники у Вашому місті. Знайдіть працівників або роботу з щоденним розрахунком за допомогою сервісу!{% endblock %}
 
 {% block content %}
 <main class="page">
+<h1 class="visually-hidden">Сервіс пошуку працівників в Україні</h1>
   
   <a id="how-btn" class="how-btn" href="{% url 'how' %}?from=home">Як це працює?</a>
 
@@ -22,7 +23,7 @@
     <a class="big-btn" href="{% url 'need_telegram' 'employer' %}?from=home">
       <span class="line1">Я РОБОТОДАВЕЦЬ</span>
       <span class="line2">шукаю працівників</span>
-    </a>
+    </a> 
 
     <a class="big-btn" href="{% url 'need_telegram' 'worker' %}?from=home">
       <span class="line1">Я ПРАЦІВНИК</span>
