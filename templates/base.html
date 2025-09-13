@@ -7,24 +7,25 @@
 
   <title>{% block title %}robochi.work{% endblock %}</title>
 
-  <meta name="description" content="{% block description %}Сервіс пошуку некваліфікованих працівників в Україні: різноробочі, підсобники, вантажники. Швидкий пошук будь-якої кількості людей.{% endblock %}">
-  <meta name="keywords" content="{% block keywords %}робота, працівники, вакансії, телеграм бот, riznorobochi{% endblock %}">
+  <meta name="description" content="{% block description %}Сервіс пошуку працівників в Україні: різноробочі, підсобники, вантажники. Швидкий пошук будь-якої кількості людей.{% endblock %}">
+  <meta name="keywords" content="{% block keywords %}Є робочі! Є робота!- robochi.work{% endblock %}">
   <meta name="author" content="{% block author %}robochi.work{% endblock %}">
+  <meta name="robots" content="index, follow"> <!-- ✅ добавлено -->
 
   <link rel="canonical" href="{% block canonical %}https://robochi.work/{% endblock %}">
 
   <meta property="og:locale" content="uk_UA">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}"> <!-- ✅ блокируем og:type -->
   <meta property="og:site_name" content="robochi.work">
-  <meta property="og:title" content="{% block og_title %}robochi.work — пошук роботи та працівників{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}Платформа для роботодавців та працівників у Telegram.{% endblock %}">
-  <meta property="og:image" content="{% block og_image %}{% static 'img/preview.png' %}{% endblock %}">
+  <meta property="og:title" content="{% block og_title %}Є робочі! Є робота!- robochi.work — пошук роботи та працівників!{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Платформа для роботодавців та працівників.{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}https://robochi.work/static/img/preview.jpg?v=3{% endblock %}"> <!-- ✅ заменено -->
   <meta property="og:url" content="{% block og_url %}https://robochi.work/{% endblock %}">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% block twitter_title %}Riznorobochi — пошук роботи та працівників{% endblock %}">
-  <meta name="twitter:description" content="{% block twitter_description %}Швидкий пошук роботи та працівників у Telegram.{% endblock %}">
-  <meta name="twitter:image" content="{% block twitter_image %}{% static 'img/preview.png' %}{% endblock %}">
+  <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}"> <!-- ✅ блокируем -->
+  <meta name="twitter:title" content="{% block twitter_title %}Є робочі! Є робота!- robochi.work — пошук роботи та працівників!{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Є робочі! Є робота!- robochi.work- Швидкий пошук роботи та працівників!{% endblock %}">
+  <meta name="twitter:image" content="{% block twitter_image %}https://robochi.work/static/img/preview.jpg?v=3{% endblock %}"> <!-- ✅ заменено -->
 
   <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=13">
@@ -32,15 +33,33 @@
 
   <meta name="google-site-verification" content="VNiGNzmmBUM-313iXL7HvqP5ZpiL_vEUU_CBnAttg_k" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DHLH231G17"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-DHLH231G17');
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "robochi.work",
+    "url": "https://robochi.work/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://robochi.work/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
   </script>
-</head>
+
+  <link rel="alternate" hreflang="uk" href="https://robochi.work/" />
+  <link rel="alternate" hreflang="x-default" href="https://robochi.work/" />
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T2BXDNCS');</script>
+  </head>
 <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2BXDNCS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
   {% block content %}{% endblock %}
 </body>
 </html>

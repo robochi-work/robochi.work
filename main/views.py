@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 import os
@@ -43,18 +43,13 @@ def policy(request):
     })
 
 def robots_txt(request):
-
-    if settings.DEBUG:
-        sitemap_url = "http://127.0.0.1:8000/sitemap.xml"
-    else:
-        sitemap_url = "https://robochi.work/sitemap.xml"
-
+    sitemap_url = "https://robochi.work/sitemap.xml"
     lines = [
         "User-agent: *",
         "Disallow:",
         f"Sitemap: {sitemap_url}",
     ]
-    return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
+    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 def need_telegram(request, role):
     if not _came_from_home(request):

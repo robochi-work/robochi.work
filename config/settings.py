@@ -10,7 +10,8 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", get_random_secret_key())
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = ["robochi.work", "www.robochi.work", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "5.187.2.230", "robochi.work", "www.robochi.work"]
+
 
 CSRF_TRUSTED_ORIGINS = [
     "https://robochi.work",
@@ -95,6 +96,9 @@ DATABASES = {
         "USER": "robochi_user",
         "PASSWORD": "StrongPassword123",
         "HOST": "localhost",
-        "PORT": "5432",
+        "PORT": "5433",
     }
 }
+SECURE_SSL_REDIRECT = False
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
