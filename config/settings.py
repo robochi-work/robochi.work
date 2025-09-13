@@ -6,17 +6,22 @@ from django.core.management.utils import get_random_secret_key
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
+def env_list(key: str, default: str = "") -> list[str]:
+    return [x.strip() for x in os.environ.get(key, default).split(",") if x.strip()]
+
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", get_random_secret_key())
+DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
 
-DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
+ALLOWED_HOSTS = env_list(
+    "DJANGO_ALLOWED_HOSTS",
+    "127.0.0.1,localhost,5.187.2.230,robochi.work,www.robochi.work"
+)
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "5.187.2.230", "robochi.work", "www.robochi.work"]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://robochi.work",
-    "https://www.robochi.work"
-]
+CSRF_TRUSTED_ORIGINS = [f"https://{h}" for h in ALLOWED_HOSTS if "." in h]
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS += [f"http://{h}" for h in ALLOWED_HOSTS if "." in h]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -57,7 +62,6 @@ if DEBUG:
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
-
     SECURE_HSTS_SECONDS = 0
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_HSTS_PRELOAD = False
@@ -65,7 +69,6 @@ else:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
@@ -92,13 +95,13 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "robochi_db",
-        "USER": "robochi_user",
-        "PASSWORD": "StrongPassword123",
-        "HOST": "localhost",
-        "PORT": "5433",
+        "NAME": os.environ.get("DB_NAME", "robochi_db"),
+        "USER": os.environ.get("DB_USER", "robochi_user"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "StrongPassword123"),
+        "HOST": os.environ.get("DB_HOST", "127.0.0.1"),
+        "PORT": os.environ.get("DB_PORT", "5433"),
     }
 }
-SECURE_SSL_REDIRECT = False
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-USE_X_FORWARDED_HOST = True
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+SITE_ID = int(os.environ.get("SITE_ID", "1"))
