@@ -56,9 +56,9 @@ def need_telegram(request, role):
         return redirect("home")
 
     if role == "employer":
-        telegram_link = "https://t.me/ArtemDiablero"
-    elif role == "worker":
         telegram_link = "https://t.me/robochi_work"
+    elif role == "worker":
+        telegram_link = "https://t.me/robochi_work_vacancy"
     else:
         telegram_link = "https://t.me/robochi_work"
 
