@@ -16,14 +16,9 @@ def home(request):
     return render(request, "home.html")
 
 def how(request):
-    if not _came_from_home(request):
-        return redirect("home")
     return render(request, "how.html")
 
 def policy(request):
-    if not _came_from_home(request):
-        return redirect("home")
-
     offer_path = os.path.join(settings.BASE_DIR, "legal", "offer.txt")
     privacy_path = os.path.join(settings.BASE_DIR, "legal", "privacy.txt")
 
