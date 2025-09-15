@@ -14,23 +14,22 @@ sitemaps = {
 }
 
 urlpatterns = [
-
     path("admin/", admin.site.urls),
-
     path("", include("main.urls")),
-
     path("robots.txt", views.robots_txt, name="robots"),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
-
     path("favicon.ico", RedirectView.as_view(
         url="/static/img/favicon.ico", permanent=True)),
 ]
 
-if settings.DEBUG:re_path(
-        r"^\.well-known/appspecific/(?P<path>.+)$",
-        static_serve,
-        {"document_root": settings.BASE_DIR / "well_known" / "appspecific"},
-        name="well_known_appspecific",
-    ),
+if settings.DEBUG:
+    urlpatterns += [
+        re_path(
+            r"^\.well-known/appspecific/(?P<path>.+)$",
+            static_serve,
+            {"document_root": settings.BASE_DIR / "well_known" / "appspecific"},
+            name="well_known_appspecific",
+        ),
+    ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
