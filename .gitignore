@@ -46,4 +46,6 @@ logs/
 
 .python-version
 
+run_local.ps1
+
 
