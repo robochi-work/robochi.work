@@ -47,9 +47,6 @@ def robots_txt(request):
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
 def need_telegram(request, role):
-    if not _came_from_home(request):
-        return redirect("home")
-
     if role == "employer":
         telegram_link = "https://t.me/robochi_work"
     elif role == "worker":
