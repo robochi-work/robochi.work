@@ -6,11 +6,12 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
-from main.sitemaps import StaticViewSitemap, NeedTelegramSitemap
+from main.sitemaps import StaticViewSitemap, NeedTelegramSitemap, NeedTelegramRootSitemap
 from main import views
 
 sitemaps = {
     "static": StaticViewSitemap,
+    "need_telegram_root": NeedTelegramRootSitemap,
     "need_telegram": NeedTelegramSitemap,
 }
 

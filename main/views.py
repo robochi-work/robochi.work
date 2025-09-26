@@ -46,6 +46,11 @@ def robots_txt(request):
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
+def need_telegram_root(request):
+    return render(request, "need_telegram.html", {
+        "telegram_link": None  
+    })
+
 def need_telegram(request, role):
     if role == "employer":
         telegram_link = "https://t.me/robochi_work"

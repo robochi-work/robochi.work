@@ -11,6 +11,16 @@ class StaticViewSitemap(Sitemap):
     def location(self, item):
         return reverse(item)
     
+class NeedTelegramRootSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.8
+
+    def items(self):
+        return ['need_telegram_root'] 
+
+    def location(self, item):
+        return reverse(item)
+    
 class NeedTelegramSitemap(Sitemap):
     changefreq = "daily"
     priority = 0.8
